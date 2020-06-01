@@ -20,5 +20,7 @@ WebContent/resources/d3.v4.min.js -text
 WebContent/resources/style.css -text
 WebContent/training/course.jsp -text
 WebContent/training/courses.jsp -text
+WebContent/training/embedded_register.jsp -text
+WebContent/training/register.jsp -text
 WebContent/training/trainees.jsp -text
 /pom.xml -text
