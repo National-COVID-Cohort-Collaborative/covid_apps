@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>N3c Training Courses</title>
+<title>N3c Trainees</title>
 <style type="text/css" media="all">
 @import "<util:applicationRoot/>/resources/style.css";
 </style>
@@ -17,26 +17,16 @@
 		<jsp:include page="/menu.jsp" flush="true"><jsp:param
 				name="caller" value="research" /></jsp:include>
 		<div id="centerCol">
-			<h2>N3C Training Courses</h2>
+			<h2>N3C Trainees</h2>
 
 			<sql:query var="courses" dataSource="jdbc/covid">
-            	select id,offerer,title,description,enrollment_limit,duration from n3c_training.course order by title;
+            	select email,first_name,last_name from n3c_training.person order by last_name,first_name;
             </sql:query>
-			<c:forEach items="${courses.rows}" var="row" varStatus="rowCounter">
-				<br />
-				<h3>${row.title} <i>(${row.offerer})</i></h3>
-				<p>Offerings:</p>
-				<sql:query var="offerings" dataSource="jdbc/covid">
-            		select * from n3c_training.offering_detail where id = ?::int;
-            		<sql:param>${row.id}</sql:param>
-            	</sql:query>
-				<ul>
-				<c:forEach items="${offerings.rows}" var="offering" varStatus="rowCounter">
-					<li><a href="course.jsp?id=${offering.id}&seqnum=${offering.seqnum}">${offering.delivery_date}, ${offering.start_time} - ${offering.end_time}</a>
-				        (enrollment: ${offering.enrolled} of ${offering.enrollment_limit})
+			<ul>
+				<c:forEach items="${courses.rows}" var="row" varStatus="rowCounter">
+                    <li>${row.last_name}, ${row.first_name} [${row.email}]
 				</c:forEach>
-				</ul>
-			</c:forEach>
+			</ul>
 			<jsp:include page="/footer.jsp" flush="true" />
 		</div>
 	</div>
