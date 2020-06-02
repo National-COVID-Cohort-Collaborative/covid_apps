@@ -80,16 +80,23 @@
 			</div></div>
 			<div id=others style="float: left; width: 45%">
 			<sql:query var="course" dataSource="jdbc/covid">
-            	select * from n3c_training.course where id in (select id from n3c_training.offering_detail where delivery_date > now());
+            	select * from n3c_training.course where id in (select id from n3c_training.offering_detail where start_time > now());
             </sql:query>
 			<c:forEach items="${course.rows}" var="course" varStatus="rowCounter">
 				<h3>${course.title} <i>(${course.offerer})</i></h3>
 				<sql:query var="offering" dataSource="jdbc/covid">
-	            	select * from n3c_training.offering_detail where id = ?::int and delivery_date > now() order by delivery_date,start_time;
+	            	select
+	            		id,
+	            		seqnum,
+	            		to_char(start_time at time zone 'US/Eastern','Dy, Mon FMDD YYYY FMHH:MI PM') as start_time,
+	            		to_char(end_time at time zone 'US/Eastern', 'FMHH:MI PM') as end_time,
+	            		enrolled,
+	            		enrollment_limit 
+	            	from n3c_training.offering_detail where id = ?::int and start_time > now() order by start_time;
 	            	<sql:param>${course.id}</sql:param>
 	            </sql:query>
 				<c:forEach items="${offering.rows}" var="offering" varStatus="rowCounter">
-					<input id="section" name=section type="radio" value="${offering.seqnum}"> ${offering.delivery_date}, ${offering.start_time} - ${offering.end_time}
+					<input id="section" name=section type="radio" value="${offering.seqnum}"> ${offering.start_time} - ${offering.end_time} ET
 				        (enrollment: ${offering.enrolled} of ${offering.enrollment_limit})<br>
 				</c:forEach>
 				<br>

@@ -18,14 +18,13 @@
 				name="caller" value="research" /></jsp:include>
 		<div id="centerCol">
 			<sql:query var="course" dataSource="jdbc/covid">
-            	select id,offerer,title,seqnum,delivery_date,delivery_time as start_time,delivery_time+duration as end_time from n3c_training.course natural join n3c_training.offering where id = ?::int and seqnum=?::int
-             	<sql:param>${param.id}</sql:param>
+            	select id,offerer,title,seqnum,to_char(start_time at time zone 'US/Eastern','Dy, Mon FMDD YYYY FMHH:MI PM') as start_time,to_char(end_time at time zone 'US/Eastern','FMHH:MI PM') as end_time from n3c_training.offering_detail natural join n3c_training.course where seqnum=?::int
             	<sql:param>${param.seqnum}</sql:param>
             </sql:query>
 			<c:forEach items="${course.rows}" var="row" varStatus="rowCounter">
 				<br />
 				<h2>${row.title} <i>(${row.offerer})</i></h2>
-				<p>Offering: ${row.delivery_date}, ${row.start_time} - ${row.end_time}</p>
+				<p>Offering: ${row.start_time} - ${row.end_time} ET</p>
 				<sql:query var="registrants" dataSource="jdbc/covid">
             		select email,first_name,last_name from n3c_training.registration natural join n3c_training.person where id = ?::int and seqnum = ?::int order by last_name,first_name;
             		<sql:param>${param.id}</sql:param>

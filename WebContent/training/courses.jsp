@@ -27,12 +27,19 @@
 				<h3>${row.title} <i>(${row.offerer})</i></h3>
 				<p>Offerings:</p>
 				<sql:query var="offerings" dataSource="jdbc/covid">
-            		select * from n3c_training.offering_detail where id = ?::int;
+ 	            	select
+	            		id,
+	            		seqnum,
+	            		to_char(start_time at time zone 'US/Eastern','Dy, Mon FMDD YYYY FMHH:MI PM') as start_time,
+	            		to_char(end_time at time zone 'US/Eastern', 'FMHH:MI PM') as end_time,
+	            		enrolled,
+	            		enrollment_limit 
+	            	from n3c_training.offering_detail where id = ?::int and start_time > now() order by start_time;
             		<sql:param>${row.id}</sql:param>
             	</sql:query>
 				<ul>
 				<c:forEach items="${offerings.rows}" var="offering" varStatus="rowCounter">
-					<li><a href="course.jsp?id=${offering.id}&seqnum=${offering.seqnum}">${offering.delivery_date}, ${offering.start_time} - ${offering.end_time}</a>
+					<li><a href="course.jsp?id=${offering.id}&seqnum=${offering.seqnum}">${offering.start_time} - ${offering.end_time} ET</a>
 				        (enrollment: ${offering.enrolled} of ${offering.enrollment_limit})
 				</c:forEach>
 				</ul>
