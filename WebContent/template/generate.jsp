@@ -26,7 +26,7 @@
              <div id=others style=" float:right; width:40%">
                <sql:query var="templates" dataSource="jdbc/covid">
                     select mode,tgrep,relation,slot0,slot1
-                    from covid_biorxiv.template
+                    from pubmed_central_ack_stanford.template
                     where fragment = ?
                     order by 1,2,3;
                     <sql:param value="${param.fragment}"/>
@@ -56,10 +56,9 @@
 			<div id=mode style=" float:left; width:100px">
 			<h4>Mode</h4>
                <sql:query var="modes" dataSource="jdbc/covid">
-                    select mode,count(*)
-                    from covid_biorxiv.template
-                    group by 1
-                    order by 2 desc;
+                    select mode
+                    from covid_biorxiv.template_mode
+                   order by seq;
                 </sql:query>
                 <c:forEach items="${modes.rows}" var="row" varStatus="rowCounter">
                     <input id="mode_${row.mode}" name=mode type="radio" value="${row.mode}" <c:if test="${row.mode == 'instantiate' || row.mode == 'promote'}">onclick="reset_relation();reset_slot0();reset_slot1();"</c:if> >${row.mode}<br>
@@ -68,11 +67,9 @@
             <div id=relation style=" float:left; width:150px">
             <h4>Relation</h4>
                <sql:query var="modes" dataSource="jdbc/covid">
-                    select relation,count(*)
-                    from covid_biorxiv.template
-                    where relation is not null
-                    group by 1
-                    order by 2 desc;
+                    select relation
+                    from covid_biorxiv.template_relation
+                    order by seq;
                 </sql:query>
                 <c:forEach items="${modes.rows}" var="row" varStatus="rowCounter">
                     <c:if test="${rowCounter.index != 0 && rowCounter.index % 9 == 0}">
@@ -84,27 +81,23 @@
             <div id=slot0 style=" float:left; width:150px">
             <h4>Slot 0</h4>
                 <sql:query var="modes" dataSource="jdbc/covid">
-                    select slot0,count(*)
-                    from covid_biorxiv.template
-                    where slot0 is not null and slot0 != '1'
-                    group by 1
-                    order by 2 desc;
+                   select relation
+                    from covid_biorxiv.template_relation
+                    order by seq;
                 </sql:query>
                 <c:forEach items="${modes.rows}" var="row" varStatus="rowCounter">
-                    <input id="slot0_${row.slot0}" name=slot0 type="radio" value="${row.slot0}">${row.slot0}<br>
+                    <input id="slot0_${row.relation}_id" name=slot0 type="radio" value="${row.relaton}_id">${row.relation}_id<br>
                 </c:forEach>
             </div>
             <div id=slot1 style=" float:left; width:150px">
             <h4>Slot 1</h4>
                  <sql:query var="modes" dataSource="jdbc/covid">
-                    select slot1,count(*)
-                    from covid_biorxiv.template
-                    where slot1 is not null
-                    group by 1
-                    order by 2 desc;
+                   select relation
+                    from covid_biorxiv.template_relation
+                    order by seq;
                 </sql:query>
                 <c:forEach items="${modes.rows}" var="row" varStatus="rowCounter">
-                    <input id="slot1_${row.slot1}" name=slot1 type="radio" value="${row.slot1}">${row.slot1}<br>
+                    <input id="slot1_${row.relation}_id" name=slot1 type="radio" value="${row.relaton}_id">${row.relation}_id<br>
                 </c:forEach>
             </div>
             <div id=samples style=" float:left; width:100%">
