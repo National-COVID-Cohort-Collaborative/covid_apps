@@ -83,7 +83,7 @@
                 <sql:query var="modes" dataSource="jdbc/covid">
                    select relation
                     from covid_biorxiv.template_relation
-                    order by seq;
+                    order by seq limit 5;
                 </sql:query>
                 <c:forEach items="${modes.rows}" var="row" varStatus="rowCounter">
                     <input id="slot0_${row.relation}_id" name=slot0 type="radio" value="${row.relaton}_id">${row.relation}_id<br>
@@ -94,7 +94,7 @@
                  <sql:query var="modes" dataSource="jdbc/covid">
                    select relation
                     from covid_biorxiv.template_relation
-                    order by seq;
+                    order by seq limit 5
                 </sql:query>
                 <c:forEach items="${modes.rows}" var="row" varStatus="rowCounter">
                     <input id="slot1_${row.relation}_id" name=slot1 type="radio" value="${row.relaton}_id">${row.relation}_id<br>
