@@ -173,6 +173,13 @@
                         autoset = false;
                     </script>
                 </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Entity ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_entity").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Place ]')}">
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
