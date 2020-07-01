@@ -33,6 +33,9 @@
     </sql:update>
 </c:if>
 </div>
+<c:if test="${not empty param.tgrep2}">
+    <c:redirect url="browse_pattern.jsp?tgrep=${param.tgrep}" />
+</c:if>
 
 <c:if test="${param.action == 'return'}">
 	<c:redirect url="generate.jsp">

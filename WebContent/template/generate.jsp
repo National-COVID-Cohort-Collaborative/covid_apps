@@ -124,31 +124,45 @@
             </table>
 
 			<c:choose>
-				<c:when	test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Organization ]')}">
-					<script type="text/javascript">
-						document.getElementById("mode_instantiate").checked = true;
-						document.getElementById("relation_organization").checked = true;
-						autoset = false;
-					</script>
-				</c:when>
-                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Person ]')}">
+                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Activity ]')}">
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
-                        document.getElementById("relation_person").checked = true;
+                        document.getElementById("relation_activity").checked = true;
                         autoset = false;
                     </script>
                 </c:when>
-                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Grant ]')}">
+                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'AnatomicalStructure ]')}">
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
-                        document.getElementById("relation_award").checked = true;
+                        document.getElementById("relation_anatomical_structure").checked = true;
                         autoset = false;
                     </script>
                 </c:when>
-                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Resource ]')}">
+                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'BiologicalFunction ]')}">
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
-                        document.getElementById("relation_resource").checked = true;
+                        document.getElementById("relation_biological_function").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'BodyPart ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_body_part").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Concept ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_concept").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'ConceptualRelationship ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_conceptual_relationship").checked = true;
                         autoset = false;
                     </script>
                 </c:when>
@@ -159,17 +173,10 @@
                         autoset = false;
                     </script>
                 </c:when>
-                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Collaboration ]')}">
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Disease ]')}">
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
-                        document.getElementById("relation_collaboration").checked = true;
-                        autoset = false;
-                    </script>
-                </c:when>
-                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Event ]')}">
-                    <script type="text/javascript">
-                        document.getElementById("mode_instantiate").checked = true;
-                        document.getElementById("relation_event").checked = true;
+                        document.getElementById("relation_disease").checked = true;
                         autoset = false;
                     </script>
                 </c:when>
@@ -180,31 +187,171 @@
                         autoset = false;
                     </script>
                 </c:when>
-                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Place ]')}">
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Event ]')}">
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
-                        document.getElementById("relation_location").checked = true;
+                        document.getElementById("relation_event").checked = true;
                         autoset = false;
                     </script>
                 </c:when>
-                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'PlaceName ]')}">
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Finding ]')}">
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
-                        document.getElementById("relation_location").checked = true;
+                        document.getElementById("relation_finding").checked = true;
                         autoset = false;
                     </script>
                 </c:when>
-                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Support ]')}">
+				<c:when	test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'FunctionalRelationship ]')}">
+					<script type="text/javascript">
+						document.getElementById("mode_instantiate").checked = true;
+						document.getElementById("relation_functional_relationship").checked = true;
+						autoset = false;
+					</script>
+				</c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'GroupAttribute ]')}">
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
-                        document.getElementById("relation_support").checked = true;
+                        document.getElementById("relation_groupAttribute").checked = true;
                         autoset = false;
                     </script>
                 </c:when>
-                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Technique ]')}">
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Group ]')}">
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
-                        document.getElementById("relation_technique").checked = true;
+                        document.getElementById("relation_group").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'HumanProcess ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_human_process").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Injury ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_injury").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'IntellectualProduct ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_intellectual_product").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Language ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_language").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'ManufacturedObject ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_manufactured_object").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'NaturalProcess ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_natural_process").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'OrganicChemical ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_organic_chemical").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'OrganismAttribute ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_organism_attribute").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Organism ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_organism").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Organization ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_organization").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'PathologicalFunction ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_pathological_function").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'PhysicalRelationship ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_physical_relationship").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'PhysiologicalFunction ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_physiological_function").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Process ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_process").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Relationship ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_relationship").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'SpatialRelationship ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_spatial_relationship").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Substance ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_substance").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'TemporalRelationship ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_temporal_relationship").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'TranscriptionFactor ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_transcription_factor").checked = true;
                         autoset = false;
                     </script>
                 </c:when>

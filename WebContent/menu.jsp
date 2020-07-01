@@ -2,6 +2,11 @@
 <div id=leftCol>
 <br>
 <h3><a href="<util:applicationRoot/>/index.jsp">Home</a></h3>
+<h3>Extraction</h3>
+<ul>
+<li><a href="<util:applicationRoot/>/template/browse_unbound.jsp">Unbound</a>
+<li><a href="<util:applicationRoot/>/template/browse_pattern.jsp">By pattern</a>
+</ul>
 <h3>Training</h3>
 <ul>
 <li><a href="<util:applicationRoot/>/training/register.jsp">Register</a>

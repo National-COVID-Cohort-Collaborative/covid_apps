@@ -22,25 +22,20 @@
 				<input type="checkbox" name="doAll" <c:if test="${not empty param.doAll}">checked</c:if>> Do all fragments
 				</form>
             <h3>Matching Fragments</h3>
-            (Currently queued patterns: 
-				<tspace:server spaceName="PMC" hostName="deep-thought.slis.uiowa.edu">
-				    <tspace:count request="refragment"/>
-				</tspace:server>
-            )
             <c:if test="${not empty param.tgrep }">
             <table>
                 <tr>
                     <th>Frequency</th>
                     <th>Fragment</th>
                 </tr>
-                <sql:query var="fragments" dataSource="jdbc/AcknowledgementsTagLib">
+                <sql:query var="fragments" dataSource="jdbc/covid">
                     select fragment,frequency
-                    from pubmed_central_ack_stanford.fragments
+                    from covid_biorxiv.fragments
                     where fragment~?
-                      and fragment not in (select fragment from pubmed_central_ack_stanford.template_suppress)
-                      and fragment not in (select fragment from pubmed_central_ack_stanford.template_defer)
-                      and fragment not in (select fragment from pubmed_central_ack_stanford.template_complete)
-                      <c:if test="${empty param.doAll}">and fragment not in (select fragment from pubmed_central_ack_stanford.template)</c:if>
+                      and fragment not in (select fragment from covid_biorxiv.template_suppress)
+                      and fragment not in (select fragment from covid_biorxiv.template_defer)
+                      and fragment not in (select fragment from covid_biorxiv.template_complete)
+                      <c:if test="${empty param.doAll}">and fragment not in (select fragment from covid_biorxiv.template)</c:if>
                     order by 2 desc limit 1000;
                     <sql:param>${param.tgrep}</sql:param>
                 </sql:query>

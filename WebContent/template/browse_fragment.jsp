@@ -28,9 +28,9 @@
                     <th>Slot 0</th>
                     <th>Slot 1</th>
                 </tr>
-                <sql:query var="templates" dataSource="jdbc/AcknowledgementsTagLib">
+                <sql:query var="templates" dataSource="jdbc/covid">
                     select tgrep,mode,relation,slot0,slot1
-                    from pubmed_central_ack_stanford.template
+                    from covid_biorxiv.template
                     where fragment = ?
                     order by 1,2,3;
                     <sql:param>${param.fragment}</sql:param>
@@ -54,9 +54,9 @@
                     <th>Frequency</th>
                     <th>Fragment</th>
                 </tr>
-                <sql:query var="fragments" dataSource="jdbc/AcknowledgementsTagLib">
+                <sql:query var="fragments" dataSource="jdbc/covid">
                     select node,count(*) as frequency
-                    from pubmed_central_ack_stanford.fragment
+                    from covid_biorxiv.fragment
                     where fragment = ?
                     group by 1
                     order by 2 desc limit 10;
