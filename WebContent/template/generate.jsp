@@ -26,7 +26,7 @@
              <div id=others style=" float:right; width:40%">
                <sql:query var="templates" dataSource="jdbc/covid">
                     select mode,tgrep,relation,slot0,slot1
-                    from pubmed_central_ack_stanford.template
+                    from covid_biorxiv.template
                     where fragment = ?
                     order by 1,2,3;
                     <sql:param value="${param.fragment}"/>

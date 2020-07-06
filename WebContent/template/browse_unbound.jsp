@@ -31,7 +31,7 @@
                       and fragment not in (select fragment from covid_biorxiv.template_suppress)
                       and fragment not in (select fragment from covid_biorxiv.template_defer)
                       and fragment not in (select fragment from covid_biorxiv.template)
-                    order by 2 desc limit 1000;
+                    order by 2 desc, 1 limit 1000;
                 </sql:query>
                 <c:forEach items="${fragments.rows}" var="row" varStatus="rowCounter">
                     <tr>
