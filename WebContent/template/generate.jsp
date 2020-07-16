@@ -152,6 +152,41 @@
                         autoset = false;
                     </script>
                 </c:when>
+                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'TemporalConcept ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_temporal_concept").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'QualitativeConcept ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_qualitative_concept").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'QuantitativeConcept ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_quantitative_concept").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'FunctionalConcept ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_functional_concept").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'SpatialConcept ]')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_spatial_concept").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
                  <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, 'Concept ]')}">
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
@@ -352,6 +387,13 @@
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
                         document.getElementById("relation_transcription_factor").checked = true;
+                        autoset = false;
+                    </script>
+                </c:when>
+                <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:contains(param.fragment, 'GeoName')}">
+                    <script type="text/javascript">
+                        document.getElementById("mode_instantiate").checked = true;
+                        document.getElementById("relation_geoname").checked = true;
                         autoset = false;
                     </script>
                 </c:when>
