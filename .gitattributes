@@ -26,8 +26,10 @@ WebContent/template/complete.jsp -text
 WebContent/template/defer.jsp -text
 WebContent/template/generate.jsp -text
 WebContent/template/submit.jsp -text
+WebContent/template/submit_vocabulary.jsp -text
 WebContent/template/suppress.jsp -text
 WebContent/template/verify.jsp -text
+WebContent/template/vocabulary.jsp -text
 WebContent/training/course.jsp -text
 WebContent/training/courses.jsp -text
 WebContent/training/embedded_register.jsp -text
