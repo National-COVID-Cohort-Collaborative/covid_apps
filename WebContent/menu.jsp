@@ -6,6 +6,7 @@
 <ul>
 <li><a href="<util:applicationRoot/>/template/browse_unbound.jsp">Unbound</a>
 <li><a href="<util:applicationRoot/>/template/browse_pattern.jsp">By pattern</a>
+<li><a href="<util:applicationRoot/>/template/vocabulary.jsp">Vocabulary</a>
 </ul>
 <h3>Training</h3>
 <ul>

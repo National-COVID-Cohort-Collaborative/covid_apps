@@ -29,7 +29,7 @@
 						<sql:query var="fragments" dataSource="jdbc/covid">
 		                    select fragment,frequency
 		                    from covid_biorxiv.fragments
-		                    order by 2 desc, 1 limit 100;
+		                    order by 2 desc, 1 limit 1000;
 		                </sql:query>
 						<c:forEach items="${fragments.rows}" var="row" varStatus="rowCounter">
 							<tr>
@@ -54,9 +54,12 @@
 		                    select substring(node from '([^ ]+)/[A-Z]+ ]$') as node,count(*)
 		                    from covid_biorxiv.fragment
 		                    where fragment = ?
+		                      and (substring(node from '([^ ]+)/[A-Z]+ ]$'),substring(? from ':([A-Za-z]*) ]$')) not in
+		                          (select term,coalesce(entity_class,'') from covid_biorxiv.vocabulary)
 		                    group by 1
 		                    order by 2 desc limit 100;
 		                    <sql:param>${param.fragment}</sql:param>
+                            <sql:param>${param.fragment}</sql:param>
 		                </sql:query>
 						<c:forEach items="${nodes.rows}" var="row" varStatus="rowCounter">
 							<tr>
@@ -70,7 +73,7 @@
             <div id=relation style=" float:left; width:180px">
             <h4>Relation</h4>
                <sql:query var="modes" dataSource="jdbc/covid">
-                    select relation
+                    select relation,entity_class
                     from covid_biorxiv.template_relation
                     order by seq;
                 </sql:query>
@@ -78,9 +81,11 @@
                     <c:if test="${rowCounter.index != 0 && rowCounter.index % 20 == 0}">
                         </div><div id=relation style=" float:left; width:180px"><h4>Relation, con't.</h4>
                     </c:if>
-                    <input id="relation_${row.relation}" name=relation type="radio" value="${row.relation}">${row.relation}<br>
+                    <input id="relation_${row.relation}" name=relation type="radio" value="${row.entity_class}">${row.relation}<br>
                 </c:forEach>
+                <input id="relation_${row.relation}" name=relation type="radio" value="ignore">ignore<br>
              </div>
+                <input type="hidden" name="fragment" value="${param.fragment}">
 					</form>
 				</c:when>
 			</c:choose>

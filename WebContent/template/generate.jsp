@@ -21,7 +21,7 @@
 			<h3>Fragment: ${param.fragment }</h3>
 			
            <jsp:include page="../visualization/syntaxTree.jsp" flush="true">
-                <jsp:param name="tgrep" value="${param.fragment }" />
+                <jsp:param name="tgrep" value="${fn:escapeXml(param.fragment)}" />
            </jsp:include>
              <div id=others style=" float:right; width:40%">
                <sql:query var="templates" dataSource="jdbc/covid">
@@ -43,14 +43,15 @@
             <div id=mode style=" float:left; width:100%">
              
             <form method='GET' action='submit.jsp'>
-			<a href="suppress.jsp?fragment=${param.fragment}&tgrep=${param.pattern}">Suppress</a>
-			| <a href="defer.jsp?fragment=${param.fragment}&tgrep=${param.pattern}">Defer</a>
-            | <a href="complete.jsp?fragment=${param.fragment}&tgrep=${param.pattern}">Completed</a>
+			<a href="suppress.jsp?fragment=${fn:escapeXml(param.fragment)}&tgrep=${param.pattern}">Suppress</a>
+			| <a href="defer.jsp?fragment=${fn:escapeXml(param.fragment)}&tgrep=${param.pattern}">Defer</a>
+            | <a href="complete.jsp?fragment=${fn:escapeXml(param.fragment)}&tgrep=${param.pattern}">Completed</a>
+            | <a href="vocabulary.jsp?fragment=${fn:escapeXml(param.fragment)}">Vocabulary</a>
 			| <button type="submit" name="action" value="submit">Submit</button>
 			| <button type="submit" name="action" value="return">Submit&Return</button>
 			| tgrep: <input type="text" id="tgrep" name="tgrep" size="100" value="">
 			<input type="hidden" name="pattern" value="${param.pattern}">
-            <input type="hidden" name="fragment" value="${param.fragment}">
+            <input type="hidden" name="fragment" value="${fn:escapeXml(param.fragment)}">
 			</div>
 			
 			<div id=mode style=" float:left; width:100px">
@@ -246,7 +247,7 @@
                 <c:when test="${fn:indexOf(fn:substringAfter(param.fragment, '['),'[') < 0 && fn:endsWith(param.fragment, ':GroupAttribute ]')}">
                     <script type="text/javascript">
                         document.getElementById("mode_instantiate").checked = true;
-                        document.getElementById("relation_groupAttribute").checked = true;
+                        document.getElementById("relation_group_attribute").checked = true;
                         autoset = false;
                     </script>
                 </c:when>
